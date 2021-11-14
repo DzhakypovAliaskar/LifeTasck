@@ -36,6 +36,7 @@ public class CreateTaskFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 userTask = binding.taskEd.getText().toString();
+                Navigation.findNavController(requireView()).navigate(R.id.createTaskFragment);
                 Bundle bundle = new Bundle();
                 bundle.putString(Constants.USER_TASK,userTask);
                 Navigation.findNavController(requireView()).navigate(R.id.homeFragment,bundle);
