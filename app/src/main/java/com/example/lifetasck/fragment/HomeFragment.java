@@ -34,14 +34,16 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment);
-        if (getArguments() != null){
+        if (getArguments() != null) {
             userTask = (String) getArguments().getSerializable(Constants.USER_TASK);
         }
         binding.addFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Navigation.findNavController(requireView()).navigate(R.id.createTaskFragment);
+//                CreateTaskFragment createTaskFragment = new CreateTaskFragment();
+//                createTaskFragment.show(requireActivity().getSupportFragmentManager(),"ttt");
             }
         });
-         }
+    }
 }

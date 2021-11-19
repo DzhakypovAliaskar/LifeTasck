@@ -17,8 +17,9 @@ import com.example.lifetasck.R;
 import com.example.lifetasck.databinding.FragmentCreateTaskBinding;
 import com.example.lifetasck.databinding.FragmentHomeBinding;
 import com.example.lifetasck.utils.Constants;
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
-public class CreateTaskFragment extends Fragment {
+public class CreateTaskFragment extends BottomSheetDialogFragment {
     FragmentCreateTaskBinding binding;
     String userTask;
     @Override
