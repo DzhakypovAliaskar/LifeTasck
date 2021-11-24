@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
+    android:padding="24dp"
     tools:context=".fragment.CreateTaskFragment">
 
     <EditText
@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/rectangle_background"
-        android:hint="Task"
+        android:hint="Задача"
         android:padding="12dp"
         android:textColor="@android:color/black"
         app:layout_constraintTop_toTopOf="parent" />
@@ -25,7 +25,7 @@
         android:background="@drawable/rectangle_background"
         android:drawableEnd="@drawable/ic_date"
         android:padding="10dp"
-        android:text="19.09.2021"
+        android:text="Дата"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@id/task_ed"
         app:layout_constraintTop_toBottomOf="@+id/task_ed" />
@@ -39,7 +39,7 @@
         android:drawableEnd="@drawable/ic_arrow_down"
         android:drawablePadding="8dp"
         android:padding="10dp"
-        android:text="Never"
+        android:text="Повторение"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/task_ed" />
@@ -50,7 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="18dp"
         android:background="@drawable/rectangle_background_button"
-        android:text="Add new task"
+        android:text="Добавить новую задачу"
         android:textColor="@android:color/white"
         app:layout_constraintTop_toBottomOf="@id/date_tv" />
 
@@ -58,7 +58,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:text="Back to task list"
+        android:text="Вернуться к списку задач"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
