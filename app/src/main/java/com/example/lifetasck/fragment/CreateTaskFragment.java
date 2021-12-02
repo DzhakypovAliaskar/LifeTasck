@@ -7,28 +7,23 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.DatePicker;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 
 import com.example.lifetasck.R;
-import com.example.lifetasck.adapter.TaskAdapter;
 import com.example.lifetasck.databinding.FragmentCreateTaskBinding;
-import com.example.lifetasck.databinding.FragmentHomeBinding;
 import com.example.lifetasck.model.TaskModel;
+import com.example.lifetasck.utils.App;
 import com.example.lifetasck.utils.Constants;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 
 public class CreateTaskFragment extends BottomSheetDialogFragment implements DatePickerDialog.OnDateSetListener {
@@ -51,17 +46,6 @@ public class CreateTaskFragment extends BottomSheetDialogFragment implements Dat
     public void onViewCreated(@NonNull @org.jetbrains.annotations.NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment);
-        binding.addBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                userTask = binding.taskEd.getText().toString();
-                Navigation.findNavController(requireView()).navigate(R.id.createTaskFragment);
-                Bundle bundle = new Bundle();
-                bundle.putString(Constants.USER_TASK, userTask);
-                Navigation.findNavController(requireView()).navigate(R.id.homeFragment, bundle);
-                Log.e("ttt", "user");
-            }
-        });
         initClickers();
     }
 
@@ -98,6 +82,7 @@ public class CreateTaskFragment extends BottomSheetDialogFragment implements Dat
             @Override
             public void onClick(View view) {
                 binding.repeatTv.setText(neverBtn.getText().toString());
+                repeatCount = neverBtn.getText().toString();
                 alertDialog.dismiss();
             }
         });
@@ -106,6 +91,7 @@ public class CreateTaskFragment extends BottomSheetDialogFragment implements Dat
             @Override
             public void onClick(View view) {
                 binding.repeatTv.setText(everyDay.getText().toString());
+                repeatCount = everyDay.getText().toString();
                 alertDialog.dismiss();
             }
         });
@@ -114,6 +100,7 @@ public class CreateTaskFragment extends BottomSheetDialogFragment implements Dat
             @Override
             public void onClick(View view) {
                 binding.repeatTv.setText(everyWeek.getText().toString());
+                repeatCount = everyWeek.getText().toString();
                 alertDialog.dismiss();
             }
         });
@@ -122,6 +109,7 @@ public class CreateTaskFragment extends BottomSheetDialogFragment implements Dat
             @Override
             public void onClick(View view) {
                 binding.repeatTv.setText(everyMouth.getText().toString());
+                repeatCount = everyMouth.getText().toString();
                 alertDialog.dismiss();
             }
         });
@@ -130,10 +118,10 @@ public class CreateTaskFragment extends BottomSheetDialogFragment implements Dat
             @Override
             public void onClick(View view) {
                 binding.repeatTv.setText(everyYear.getText().toString());
+                repeatCount = everyYear.getText().toString();
                 alertDialog.dismiss();
             }
         });
-
     }
 
     private void showDialog() {
@@ -147,22 +135,17 @@ public class CreateTaskFragment extends BottomSheetDialogFragment implements Dat
     }
 
     private void passModelHomeFragment() {
-//        ArrayList<TaskModel> list = new ArrayList<>();
-//        userTask = binding.taskEd.getText().toString();
-//        deadline = binding.dateTv.getText().toString();
-//        repeatCount = binding.repeatTv.getText().toString();
-//        TaskModel model = new TaskModel(userTask, deadline, repeatCount);
-//        Bundle bundle = new Bundle();
-//        bundle.putSerializable(Constants.MODEL,model);
-//        TaskAdapter taskAdapter = new TaskAdapter();
-//        list.add(model);
-//        taskAdapter.
+        userTask = binding.taskEd.getText().toString();
+        TaskModel taskModel = new TaskModel(userTask, deadline, repeatCount);
+        App.getInstance().getDatabase().taskDao().insert(taskModel);
         dismiss();
     }
 
     @SuppressLint("SetTextI18n")
     @Override
     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-        binding.dateTv.setText(year + "." + month + "." + day);
+        deadline = year + "." + month + "." + day;
+        binding.dateTv.setText(deadline);
     }
+
 }
