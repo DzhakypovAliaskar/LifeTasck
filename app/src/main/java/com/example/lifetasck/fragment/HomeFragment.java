@@ -3,17 +3,12 @@ package com.example.lifetasck.fragment;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
-
 import com.example.lifetasck.OnItemClick;
 import com.example.lifetasck.adapter.TaskAdapter;
 import com.example.lifetasck.databinding.FragmentHomeBinding;
@@ -52,7 +47,6 @@ public class HomeFragment extends Fragment {
             }
         });
         initRecycler();
-
     }
 
     private void initRecycler() {
@@ -71,10 +65,18 @@ public class HomeFragment extends Fragment {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
                                     App.getInstance().getDatabase().taskDao().delete(model);
-
                                 }
                             });
                     builder.show();
+                }
+
+                @Override
+                public void onClick(TaskModel model) {
+                    CreateTaskFragment createTaskFragment = new CreateTaskFragment();
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable(Constants.UPDATE_MODEL, model);
+                    createTaskFragment.setArguments(bundle);
+                    createTaskFragment.show(requireActivity().getSupportFragmentManager(),Constants.UPDATE);
                 }
             });
         });

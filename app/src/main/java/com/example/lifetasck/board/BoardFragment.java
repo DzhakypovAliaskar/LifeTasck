@@ -32,15 +32,15 @@ public class BoardFragment extends Fragment {
             switch (position) {
                 case 0:
                     binding.description.setText("Экономьте время и будьте продуктивны, создавая ежедневные задачи");
-                    binding.boardImage.setAnimation("profile.json");
+                    binding.boardImage.setAnimation("user.json");
                     break;
                 case 1:
                     binding.description.setText("Получить это удовлетворение, отмечая их как выполненные");
-                    binding.boardImage.setAnimation("user.json");
+                    binding.boardImage.setAnimation("task.json");
                     break;
                 case 2:
                     binding.description.setText("Быстрее достигайте своих целей с помощью Lifetrack");
-                    binding.boardImage.setAnimation("user.json");
+                    binding.boardImage.setAnimation("woman.json");
                     break;
             }
         }
